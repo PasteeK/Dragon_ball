@@ -16,8 +16,12 @@ async function fetchCharacterByHisId(id: string) {
         const character = new Character(data);
         
         const characterContainer = Toolbox.createDiv();
-        
+
         const name = Toolbox.createH1(character.name);
+        Toolbox.addClass(name, ['text-2xl', 'font-bold', 'text-center', 'mb-4']);
+        Toolbox.append(name, characterContainer);
+
+        Toolbox.append(characterContainer, fullChar);
         
     } catch (error) {
         console.error('Error fetching character:', error);
