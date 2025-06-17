@@ -1,7 +1,7 @@
 import './style.css';
 import { Toolbox } from './toolbox';
 import { Character } from './character';
-import type { CharacterData } from './character'; // <-- pour être sûr
+import type { CharacterData } from './character';
 
 type CharacterAPIResponse = {
   items: CharacterData[];
@@ -15,8 +15,8 @@ Toolbox.addClass(app, [
   'p-4',
   'gap-40',
   'justify-items-center',
-  'ml-10',
-  'mr-10']);
+  'ml-25',
+  'mr-25']);
 
 async function fetchCharacters() {
   try {
@@ -28,6 +28,9 @@ async function fetchCharacters() {
         const character = new Character(item);
 
         const characterContainer = Toolbox.createDiv();
+        characterContainer.addEventListener('click', () => {
+          window.location.href = `/fullcharacter.html?id=${character.id}`;
+        })
 
         const characterBackground = Toolbox.createDiv();
         Toolbox.addClass(characterBackground, [
@@ -113,6 +116,20 @@ async function fetchCharacters() {
           'text-amber-700',
         ]);
         Toolbox.append(kiValue, characterInfos);
+
+
+        const kiMax = Toolbox.createH1('Ki potentiel : ')
+        Toolbox.addClass(kiMax, [
+          'text-lg',
+          'font-bold',
+        ]);
+        Toolbox.append(kiMax, characterInfos);
+
+        const kiMaxValue = Toolbox.createH1(character.maxKi);
+        Toolbox.addClass(kiMaxValue, [
+          'text-amber-700',
+        ]);
+        Toolbox.append(kiMaxValue, characterInfos);
 
 
         Toolbox.append(characterContainer, app);
