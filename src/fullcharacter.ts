@@ -178,6 +178,46 @@ async function fetchCharacterByHisId(id: string) {
         Toolbox.append(affiliationValue, affiliationLi);
         Toolbox.append(affiliationLi, statsListe);
 
+        // KI
+
+        const kiLi = Toolbox.createLi(statsListe);
+        Toolbox.addClass(kiLi, [
+            'flex',
+            'justify-center',
+            'items-center',
+            'gap-6',
+        ]);
+        const ki = Toolbox.createH1(`Ki :`);
+        Toolbox.append(ki, kiLi);
+        Toolbox.addClass(ki, [
+            'text-lg',
+            'font-bold',
+        ]);
+        const kiValue = Toolbox.createP(character.ki);
+        Toolbox.append(kiValue, kiLi);
+        Toolbox.append(kiLi, statsListe);
+
+        // MaxKI
+
+        const maxkiLi = Toolbox.createLi(statsListe);
+        Toolbox.addClass(maxkiLi, [
+            'flex',
+            'justify-center',
+            'items-center',
+            'gap-6',
+        ]);
+        const maxki = Toolbox.createH1(`Ki potentiel :`);
+        Toolbox.append(maxki, maxkiLi);
+        Toolbox.addClass(maxki, [
+            'text-lg',
+            'font-bold',
+        ]);
+        const maxkiValue = Toolbox.createP(character.maxKi);
+        Toolbox.append(maxkiValue, maxkiLi);
+        Toolbox.append(maxkiLi, statsListe);
+
+
+
         Toolbox.append(statsListe, characterStats);
         
 

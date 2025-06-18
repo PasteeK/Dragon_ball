@@ -20,7 +20,7 @@ Toolbox.addClass(app, [
 
 async function fetchCharacters() {
   try {
-    const res = await fetch('https://dragonball-api.com/api/characters/');
+    const res = await fetch('https://dragonball-api.com/api/characters/?limit=100');
     const data: CharacterAPIResponse = await res.json();
     
     if (data && data.items) {
