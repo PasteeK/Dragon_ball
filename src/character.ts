@@ -9,7 +9,7 @@ export type CharacterData = {
     image: string;
     affiliation: string;
     originPlanet: object;
-    transformatiosn: any;
+    transformations: any;
 };
 
 export type CharacterResponse = {
@@ -27,7 +27,7 @@ export class Character {
     image: string;
     affiliation: string;
     originPlanet: object;
-    transformatiosn: any;
+    transformations: any;
 
     constructor(data: CharacterData) {
         this.name = data.name;
@@ -40,7 +40,7 @@ export class Character {
         this.image = data.image;
         this.affiliation = data.affiliation;
         this.originPlanet = data.originPlanet;
-        this.transformatiosn = data.transformatiosn || [];
+        this.transformations = data.transformations || [];
     }
 
 }

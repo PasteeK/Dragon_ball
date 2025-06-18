@@ -8,6 +8,22 @@ export class Toolbox {
         return h1;
     }
 
+    static createP(text: any): any {
+        const p = document.createElement('p');
+        p.textContent = text;
+        return p;
+    }
+
+    static createUl(): HTMLUListElement {
+        return document.createElement('ul');
+    }
+
+    static createLi(ul: HTMLUListElement): HTMLLIElement {
+        const li = document.createElement('li');
+        ul.appendChild(li);
+        return li;
+    }
+
     static createDiv(): HTMLDivElement {
         return document.createElement('div');
     }
@@ -39,6 +55,4 @@ export class Toolbox {
             console.error('Element and class name must be defined to add a class.');
         }
     }
-
-    static addImg()
 }
