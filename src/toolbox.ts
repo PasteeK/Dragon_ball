@@ -28,6 +28,12 @@ export class Toolbox {
         return document.createElement('div');
     }
 
+    static createImg(path: string): HTMLImageElement {
+        const img = document.createElement('img');
+        img.src = path;
+        return img;
+    }
+
     static append(el1: any, el2: HTMLElement): void {
         if (el1 && el2) {
             el2.appendChild(el1);

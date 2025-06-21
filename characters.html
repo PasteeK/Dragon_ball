@@ -1,25 +1,36 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Test Police</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./src/img/balls/one.png" />
+    <link rel="stylesheet" href="/src/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
     </style>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              limelight: ['Limelight', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
+    <title>DBZ - Characters</title>
   </head>
-  <body class="font-limelight text-4xl">
-    Ceci est un test avec Limelight
+  <body class="bg-[url('./src/img/backgrounds/home.jpg')]">
+    <header>
+      <nav class="bg-amber-500 p-2 flex" id="navbar">
+        <a href="index.html"><img class="w-[150px]" src="./src/img/DBZ_logo.png" alt="DBZ Logo"></a>
+        <ul class="flex flex-1 justify-center gap-50 items-center limelight text-3xl">
+          <li class="mx-2"><a class="hover:text-red-700 transition ease-in 0.2s" href="index.html">Accueil</a></li>
+          <li class="mx-2 flex items-center gap-4">
+            <img class="h-[48px]" src="./src/img/balls/two.png" alt="Dragon ball">
+            <a class="hover:text-red-700 transition ease-in 0.2s" href="characters.html">Personnages</a>
+          </li>
+          <li class="mx-2"><a class="hover:text-red-700 transition ease-in 0.2s" href="about.html">À propos</a></li>
+      </nav>
+    </header>
+    <div id="app">
+      <footer>
+
+      </footer>
+    </div>
+    <script type="module" src="/src/characters.ts"></script>
+    <footer class="bg-amber-700 flex justify-center p-20 w-full">
+      <p class="text-white text-sm">© - Alexis do fogo</p>
+    </footer>
   </body>
 </html>

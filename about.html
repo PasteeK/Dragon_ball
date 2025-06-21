@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./src/img/balls/one.png" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
+    </style>
+    <title>DBZ - Accueil</title>
+  </head>
+  <body style="background-color: #4bb67b" class="min-h-screen flex flex-col">
+    <header>
+      <nav class="bg-amber-500 p-2 flex" id="navbar">
+        <a href="index.html"
+          ><img class="w-[150px]" src="./src/img/DBZ_logo.png" alt="DBZ Logo"
+        /></a>
+        <ul
+          class="flex flex-1 justify-center gap-50 items-center limelight text-3xl"
+        >
+          <li class="mx-2">
+            <a
+              class="hover:text-red-700 transition ease-in 0.2s"
+              href="index.html"
+              >Accueil</a
+            >
+          </li>
+          <li class="mx-2">
+            <a
+              class="hover:text-red-700 transition ease-in 0.2s"
+              href="characters.html"
+              >Personnages</a
+            >
+          </li>
+          <li class="mx-2 flex items-center gap-4">
+            <img
+              class="h-[48px]"
+              src="./src/img/balls/three.png"
+              alt="Dragon ball"
+            />
+            <a
+              class="hover:text-red-700 transition ease-in 0.2s"
+              href="about.html"
+              >À propos</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div id="app" class="flex-grow">
+      <section class="text-3xl">
+        <img src="./src/img/backgrounds/about.jpg" alt="">
+        <p class="text-center" style="margin-bottom: 2.5rem; margin-top: 2rem">
+          Bienvenue sur mon humble fansite dédié à l'univers légendaire de
+          <strong>Dragon Ball Z</strong> ! Ici, je tente de recenser tous les
+          personnages — héros, vilains, et ceux qui n'apparaissent que pendant 2
+          épisodes.
+        </p>
+        <p class="text-center mb-4" style="margin-bottom: 2.5rem">
+          Ce site a pour but de vous offrir une petite histoire de Dragon Ball
+          Z, mais aussi de vous faire plaisir en regardant des personnages que
+          vous aimez et que vous n'avez jamais vu.
+        </p>
+        <p class="text-center mb-4" style="margin-bottom: 2.5rem">
+          Le site repose sur une <em>API espagnole un peu capricieuse</em>, donc
+          certains noms peuvent être approximatifs, voire... mystérieux. Si vous
+          tombez sur "Gokú Ultra Guapo" ou "Vegeta Pastel", c'est pas moi, c'est
+          l'API.
+        </p>
+        <p class="text-center mb-4" style="margin-bottom: 2.5rem">
+          L'objectif est de rendre hommage à cette série culte tout en s'amusant
+          un peu avec les données disponibles. Merci de votre indulgence et
+          n'hésitez pas à m'envoyer vos suggestions !
+        </p>
+      </section>
+    </div>
+    <footer class="bg-amber-700 flex justify-center p-20 w-full">
+      <p class="text-white text-sm">© - Alexis do fogo</p>
+    </footer>
+</body>
+<script type="module" src="/src/main.ts"></script>
+</html>

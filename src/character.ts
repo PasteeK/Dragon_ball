@@ -9,7 +9,15 @@ export type CharacterData = {
     image: string;
     affiliation: string;
     originPlanet: object;
-    transformations: any;
+    transformations: Transformations[];
+};
+
+export type Transformations = {
+    id: number;
+    name: string;
+    image: string;
+    ki: string;
+    deletedAt: string | null;
 };
 
 export type CharacterResponse = {
@@ -27,7 +35,8 @@ export class Character {
     image: string;
     affiliation: string;
     originPlanet: object;
-    transformations: any;
+    transformations: Transformations[];
+
 
     constructor(data: CharacterData) {
         this.name = data.name;
@@ -40,7 +49,7 @@ export class Character {
         this.image = data.image;
         this.affiliation = data.affiliation;
         this.originPlanet = data.originPlanet;
-        this.transformations = data.transformations || [];
+        this.transformations = data.transformations;
     }
 
 }

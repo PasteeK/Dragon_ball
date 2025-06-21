@@ -7,7 +7,6 @@ const url = new URL(window.location.href);
 const characterId = url.searchParams.get('id');
 
 const fullChar = document.getElementById('fullChar') as HTMLElement;
-
 Toolbox.addClass(fullChar, [
     'grid',
     'gap-x-4',
@@ -19,8 +18,53 @@ async function fetchCharacterByHisId(id: string) {
         const res = await fetch (`https://dragonball-api.com/api/characters/${id}`);
         const data: CharacterData = await res.json();
 
+        
         const character = new Character(data);
         
+
+        const previousChar = Toolbox.createImg('/src/img/assets/left_arrow.png');
+        Toolbox.addClass(previousChar, [
+            'w-[48px]',
+            'h-[48px]',
+            'cursor-pointer',
+            'absolute',
+            'top-1/2',
+            'left-[50px]',
+            'fixed',
+        ])
+        Toolbox.append(previousChar, fullChar)
+        if (character.id == 1) {
+            previousChar.src = '/src/img/assets/left_arrow_gray.png';
+        }
+        
+        previousChar.addEventListener('click', () => {
+            if (character.id >= 2) {
+                window.location.href = `/fullcharacter.html?id=${character.id -1}`;
+            }
+        })
+
+
+        const nextChar = Toolbox.createImg('/src/img/assets/right_arrow.png');
+        Toolbox.addClass(nextChar, [
+            'w-[48px]',
+            'h-[48px]',
+            'cursor-pointer',
+            'absolute',
+            'top-1/2',
+            'right-[50px]',
+            'fixed',
+        ])
+        Toolbox.append(nextChar, fullChar)
+        if (character.id == 40) {
+            nextChar.src = '/src/img/assets/right_arrow_gray.png';
+        }
+        
+        nextChar.addEventListener('click', () => {
+            if (character.id <= 39) {
+                window.location.href = `/fullcharacter.html?id=${character.id +1}`;
+            }
+        })
+
         const characterContainer = Toolbox.createDiv();
         Toolbox.addClass(characterContainer, [
             'mt-15',
@@ -28,16 +72,60 @@ async function fetchCharacterByHisId(id: string) {
         ]);
 
         const imageBackground = Toolbox.createDiv();
+        switch (character.affiliation) {
+            case 'Z Fighter': imageBackground.classList.add('bg-[url(/src/img/backgrounds/earth.gif)]'); break;
+            case 'Army of Frieza': imageBackground.classList.add('bg-[url(/src/img/backgrounds/friezaShip.gif)]'); break;
+            case 'Other' : imageBackground.classList.add('bg-[url(/src/img/backgrounds/other.png)]'); break;
+            case 'Villain' : imageBackground.classList.add('bg-[url(/src/img/backgrounds/androids.png)]'); break;
+            case 'Assistant of Beerus' : imageBackground.classList.add('bg-[url(/src/img/backgrounds/beerusAssistant.png)]'); break;
+        }
+        if (character.name == "Celula") {
+            imageBackground.classList.add('bg-[url(/src/img/backgrounds/cellArena.png)]')
+        }
         Toolbox.addClass(imageBackground, [
-            'bg-[url(/src/img/backgrounds/earth.gif)]',
             'w-[480px]',
             'h-[480px]',
             'flex',
             'items-center',
             'justify-center',
             'rounded-tl-lg',
+            'gap-10',
         ])
         Toolbox.append(imageBackground, characterContainer);
+
+
+        let transfoCounter: any = 0;
+        
+        const leftArrow = Toolbox.createImg('/src/img/assets/left_arrow.png');
+        if (Array.isArray(character.transformations) && character.transformations.length > 0) {
+            if (transfoCounter == 0) {
+                leftArrow.src = '/src/img/assets/left_arrow_gray.png';
+            }
+            leftArrow.addEventListener('click', () => {
+                if (transfoCounter == 0) {
+                    return;
+                }
+                transfoCounter--;
+                console.log('transfoCounter', transfoCounter);
+                if (transfoCounter == 0) {
+                    img.src = character.image;
+                    leftArrow.src = '/src/img/assets/left_arrow_gray.png';
+                    return;
+                }
+                img.src = character.transformations[transfoCounter - 1].image;
+                if (transfoCounter == -1) {
+                    leftArrow.src = '/src/img/assets/left_arrow_gray.png';
+                } else {
+                    leftArrow.src = '/src/img/assets/left_arrow.png';
+                }
+            });
+            Toolbox.addClass(leftArrow, [
+                'w-[50px]',
+                'h-[50px]',
+                'cursor-pointer',
+            ]);
+            Toolbox.append(leftArrow, imageBackground);
+        }
 
         const img = document.createElement('img');
         img.src = character.image;
@@ -46,6 +134,33 @@ async function fetchCharacterByHisId(id: string) {
         Toolbox.addClass(img, [
             'h-[400px]',
         ])
+
+        if (Array.isArray(character.transformations) && character.transformations.length > 0) {
+            const rightArrow = Toolbox.createImg('/src/img/assets/right_arrow.png');
+            Toolbox.addClass(rightArrow, [
+                'w-[50px]',
+                'h-[50px]',
+                'cursor-pointer',
+            ]);
+            rightArrow.addEventListener('click', () => {
+                if (transfoCounter == character.transformations.length) {
+                    return;
+                }
+                transfoCounter++;
+                console.log('transfoCounter', transfoCounter);
+                img.src = character.transformations[transfoCounter - 1].image;
+                if (transfoCounter == 0) {
+                    leftArrow.src = '/src/img/assets/left_arrow_gray.png';
+                } else {
+                    leftArrow.src = '/src/img/assets/left_arrow.png';
+                }
+                if (transfoCounter == character.transformations.length) {
+                    rightArrow.src = '/src/img/assets/right_arrow_gray.png';
+                    return;
+                }
+            });
+            Toolbox.append(rightArrow, imageBackground);
+        }
 
         const characterInfo = Toolbox.createDiv();
         Toolbox.addClass(characterInfo, [
@@ -215,6 +330,65 @@ async function fetchCharacterByHisId(id: string) {
         const maxkiValue = Toolbox.createP(character.maxKi);
         Toolbox.append(maxkiValue, maxkiLi);
         Toolbox.append(maxkiLi, statsListe);
+
+        // TRANSFORMATIONS
+
+        const transformationsLi = Toolbox.createLi(statsListe);
+        Toolbox.addClass(transformationsLi, [
+            'flex',
+            'flex-col',
+            'items-center',
+            'gap-4',
+        ]);
+        const transformations = Toolbox.createH1(`Transformations :`);
+        Toolbox.append(transformations, transformationsLi);
+        Toolbox.addClass(transformations, [
+            'text-lg',
+            'font-bold',
+        ]);
+
+        const transformationsContainer = Toolbox.createDiv();
+        Toolbox.addClass(transformationsContainer, [
+            'grid',
+            'grid-cols-3',
+            'gap-4',
+        ]);
+
+        character.transformations.forEach((t: { name: string, image: string }) => {
+            const transformationDiv = Toolbox.createDiv();
+            Toolbox.addClass(transformationDiv, [
+                'flex',
+                'flex-col',
+                'items-center',
+                'bg-white/35',
+                'p-2',
+                'rounded',
+                'shadow-md',
+                'hover:shadow-lg',
+                'hover:scale-105',
+                'transition',
+                'duration-300',
+                'cursor-pointer',
+            ]);
+            transformationDiv.addEventListener('click', () => {
+                img.src = t.image;
+            })
+
+            const img = document.createElement('img');
+            img.src = t.image;
+            img.alt = t.name;
+            Toolbox.addClass(img, ['h-[150px]', 'object-contain']);
+            Toolbox.append(img, transformationDiv);
+
+            const name = Toolbox.createP(t.name);
+            Toolbox.addClass(name, ['mt-2', 'font-semibold']);
+            Toolbox.append(name, transformationDiv);
+
+            Toolbox.append(transformationDiv, transformationsContainer);
+        });
+
+        Toolbox.append(transformationsLi, statsListe);
+        Toolbox.append(transformationsContainer, statsListe);
 
 
 
