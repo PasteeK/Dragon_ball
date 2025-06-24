@@ -23,6 +23,44 @@
           <li class="mx-2"><a class="hover:text-red-700 transition ease-in 0.2s" href="about.html">À propos</a></li>
       </nav>
     </header>
+    <div class="flex flex-col items-center gap-4">
+      <h1 class="text-4xl mt-4">Filtrer les personnages</h1>
+      <div class="flex gap-4">
+
+        <div class="bg-amber-400 rounded-2xl p-4">
+          <label class="mr-2" for="race-select">Choisir une race :</label>
+          <select class="mr-2 bg-gray-300 rounded-2xl p-0.5 px-2" id="race-select">
+            <option id="allRace" value="">-- Tous --</option>
+            <option id="saiyan" value="Saiyan">Saiyan</option>
+            <option id="namekian" value="Namekian">Namek</option>
+            <option id="human" value="Human">Humain</option>
+            <option id="android" value="Android">Android</option>
+          </select>
+        </div>
+
+        <div class="bg-amber-400 rounded-2xl p-4">
+          <label class="mr-2" for="gender-select">Choisir un genre :</label>
+          <select class="mr-2 bg-gray-300 rounded-2xl p-0.5 px-2" id="gender-select">
+            <option id="allGender" value="">-- Tous --</option>
+            <option id="male" value="male">Homme / Mâle</option>
+            <option id="female" value="female">Femme / Femelle</option>
+          </select>
+        </div>
+  
+        <div class="bg-amber-400 rounded-2xl p-4">
+          <label class="mr-2" for="affiliation-select">Choisir une affiliation :</label>
+          <select class="mr-2 bg-gray-300 rounded-2xl p-0.5 px-2" id="affiliation-select">
+            <option id="allAffiliation" value="">-- Tous --</option>
+            <option id="Z Fighter" value="Z Fighter">Combattant Z</option>
+            <option id="Army of Frieza" value="Army of Frieza">Armée de freezer</option>
+            <option id="freelancer" value="freelancer">Combattant seul</option>
+          </select>
+        </div>
+
+      </div>
+
+  </select>
+    </div>
     <div id="app">
       <footer>
 

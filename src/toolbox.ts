@@ -34,6 +34,32 @@ export class Toolbox {
         return img;
     }
 
+    static createForm(): HTMLFormElement {
+        return document.createElement('form');
+    }
+
+    static createInput(type: string): HTMLInputElement {
+        const input = document.createElement('input');
+        input.type = type;
+        return input;
+    }
+
+    static createButton(text: string): HTMLButtonElement {
+        const button = document.createElement('button');
+        button.textContent = text;
+        return button;
+    }
+
+    static createLabel(text: string): HTMLLabelElement {
+        const label = document.createElement('label');
+        label.textContent = text;
+        return label;
+    }
+
+    static createSelect(): HTMLSelectElement {
+        return document.createElement('select');
+    }
+
     static append(el1: any, el2: HTMLElement): void {
         if (el1 && el2) {
             el2.appendChild(el1);
